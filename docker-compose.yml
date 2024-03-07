@@ -4,8 +4,8 @@ services:
   gotickets:
     image: bitnami/postgresql
     ports:
-      - 5432:5432
+      - ${DB_PORT}:${DB_PORT}
     environment:
-      - POSTGRESQL_USERNAME=admin
-      - POSTGRESQL_PASSWORD=admin
-      - POSTGRESQL_DATABASE=tickets
+      - POSTGRESQL_USERNAME=${DB_USER}
+      - POSTGRESQL_PASSWORD=${DB_PASSWORD}
+      - POSTGRESQL_DATABASE=${DB_NAME}
