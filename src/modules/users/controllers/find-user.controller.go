@@ -2,7 +2,6 @@ package users_controllers
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -21,12 +20,8 @@ type FindUserErrorData struct{
 }
 
 func FindUser(res http.ResponseWriter, req *http.Request){
-	// Content type
-	res.Header().Set("Content-Type", "application/json")
-
 	// Get id from params
 	id := mux.Vars(req)["id"]
-	fmt.Println(id)
 
 	// Find user
 	user := users_services.FindUser(id)

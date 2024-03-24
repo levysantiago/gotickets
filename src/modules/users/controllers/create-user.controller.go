@@ -19,9 +19,6 @@ type CreateUserErrorData struct{
 }
 
 func CreateUser(res http.ResponseWriter, req *http.Request){
-	// Defining content type
-	res.Header().Set("Content-Type", "application/json")
-
 	// User data
 	var createUserData = users_models.User{}
 
@@ -32,12 +29,20 @@ func CreateUser(res http.ResponseWriter, req *http.Request){
 		var data, _ = json.Marshal(errorData)
 		res.WriteHeader(http.StatusInternalServerError)
 		res.Write(data)
+		return
 	}
 
 	// Creating user
-	var user = users_services.CreateUser(&createUserData)
+	_, err = users_services.CreateUser(&createUserData)
+	if(err != nil){
+		errorData := CreateUserErrorData{Status: "error", ErrorMessage: err.Error()}
+		data, _ := json.Marshal(errorData)
+		res.WriteHeader(http.StatusBadRequest)
+		res.Write(data)
+		return
+	}
 
-	var data, _ = json.Marshal(user)
+	var data, _ = json.Marshal(createUserData)
 	res.WriteHeader(http.StatusCreated)
 	res.Write(data)
 }
