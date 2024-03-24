@@ -34,3 +34,6 @@ go build src/main.go
 ```
 
 Server will be running at `http://localhost:3333`
+
+## Links
+- [go-ethereum book](https://goethereumbook.org/en/)

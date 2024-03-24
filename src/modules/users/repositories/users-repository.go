@@ -8,25 +8,25 @@ import (
 var db = db_provider.GetDB()
 
 func Create(user *users_models.User) *users_models.User{
-	db.Create(user)
+	db.Create(&user)
 	return user
 }
 
 func Find(id string) *users_models.User{
 	user := users_models.User{}
-	db.Where("Id=?", id).First(&user)
+	db.Preload("Wallet").Where("Id=?", id).First(&user)
 	return &user
 }
 
 func FindByEmail(email string) *users_models.User{
 	user := users_models.User{}
-	db.Where("Email=?", email).First(&user)
+	db.Preload("Wallet").Where("Email=?", email).First(&user)
 	return &user
 }
 
 func FindMany() []users_models.User{
 	var users []users_models.User
-	db.Find(&users)
+	db.Preload("Wallet").Find(&users)
 	return users
 }
 
