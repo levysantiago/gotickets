@@ -5,6 +5,6 @@ import (
 	users_repository "github.com/levysantiago/gotickets/src/modules/users/repositories"
 )
 
-func CreateUser(user *users_models.User) *users_models.User{
-	return users_repository.Create(user)
+func FindUser(id string) *users_models.User{
+	return users_repository.Find(id)
 }

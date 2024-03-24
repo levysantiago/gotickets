@@ -18,7 +18,7 @@ type CreateUserErrorData struct{
 	ErrorMessage string
 }
 
-func CreateUserController(res http.ResponseWriter, req *http.Request){
+func CreateUser(res http.ResponseWriter, req *http.Request){
 	// Defining content type
 	res.Header().Set("Content-Type", "application/json")
 
@@ -35,7 +35,7 @@ func CreateUserController(res http.ResponseWriter, req *http.Request){
 	}
 
 	// Creating user
-	var user = users_services.CreateUserService(&createUserData)
+	var user = users_services.CreateUser(&createUserData)
 
 	var data, _ = json.Marshal(user)
 	res.WriteHeader(http.StatusCreated)

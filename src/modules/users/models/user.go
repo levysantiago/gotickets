@@ -7,7 +7,7 @@ import (
 )
 
 type User struct{
-	ID string `gorm:"type:uuid;default:gen_random_uuid()"`
+	Id string `gorm:"type:uuid;default:gen_random_uuid()"`
 	Email string `gorm:"unique"`
 	Password string
 	CreatedAt time.Time

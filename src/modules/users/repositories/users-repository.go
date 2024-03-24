@@ -7,7 +7,13 @@ import (
 
 var db = db_provider.GetDB()
 
-func CreateUser(user *users_models.User) *users_models.User{
+func Create(user *users_models.User) *users_models.User{
 	db.Create(user)
 	return user
+}
+
+func Find(id string) *users_models.User{
+	user := users_models.User{}
+	db.Where("Id=?", id).First(&user)
+	return &user
 }
